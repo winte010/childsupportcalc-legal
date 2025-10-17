@@ -43,6 +43,21 @@
             font-size: 40px;
         }
 
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         h1 {
             color: #333;
             font-size: 28px;
@@ -55,6 +70,28 @@
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 30px;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .status.info {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
         }
 
         .button-group {
@@ -102,6 +139,10 @@
             font-size: 14px;
         }
 
+        .hidden {
+            display: none;
+        }
+
         @media (max-width: 480px) {
             .container {
                 padding: 30px 20px;
@@ -121,37 +162,158 @@
 </head>
 <body>
     <div class="container">
-        <div class="icon">🔐</div>
-        <h1>Password Reset Link Used</h1>
-        <p>Your password reset link has been processed. If you have the Child Support Calculator mobile app installed, it should have opened automatically.</p>
-
-        <div class="button-group">
-            <a href="https://childsupportcalc.junotech.app" class="btn btn-primary">Open Web App</a>
-            <a href="https://childsupportcalc.junotech.app" class="btn btn-secondary">Return to Home</a>
+        <!-- Loading State -->
+        <div id="loadingState">
+            <div class="icon">
+                <div class="spinner"></div>
+            </div>
+            <h1>Verifying Reset Link...</h1>
+            <p>Please wait while we verify your password reset request.</p>
+            <div class="status info" id="statusMessage">
+                Exchanging authentication token...
+            </div>
         </div>
 
-        <div class="info-text">
-            <p><strong>Don't have the app yet?</strong></p>
-            <p>Download from the App Store or Google Play to access your account on mobile.</p>
+        <!-- Success State (hidden by default) -->
+        <div id="successState" class="hidden">
+            <div class="icon">🔐</div>
+            <h1>Opening App...</h1>
+            <p>Your password reset link has been verified. If you have the Child Support Calculator mobile app installed, it should open automatically.</p>
+
+            <div class="status success">
+                Authentication successful! Attempting to open app...
+            </div>
+
+            <div class="button-group">
+                <a href="https://childsupportcalc.junotech.app" class="btn btn-primary">Open Web App</a>
+                <a href="https://childsupportcalc.junotech.app" class="btn btn-secondary">Return to Home</a>
+            </div>
+
+            <div class="info-text">
+                <p><strong>Don't have the app yet?</strong></p>
+                <p>Download from the App Store or Google Play to access your account on mobile.</p>
+            </div>
+        </div>
+
+        <!-- Error State (hidden by default) -->
+        <div id="errorState" class="hidden">
+            <div class="icon">⚠️</div>
+            <h1>Reset Link Invalid</h1>
+            <p id="errorMessage">This password reset link is invalid or has expired. Please request a new password reset.</p>
+
+            <div class="button-group">
+                <a href="https://childsupportcalc.junotech.app" class="btn btn-primary">Request New Reset</a>
+                <a href="https://childsupportcalc.junotech.app" class="btn btn-secondary">Return to Home</a>
+            </div>
         </div>
     </div>
 
-    <script>
-        // Attempt to open the mobile app via deep link
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        const type = urlParams.get('type');
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        if (token) {
-            // Try to open mobile app with deep link
-            const deepLink = `cschildsupport://password-reset?token=${token}&type=${type || 'recovery'}`;
+    <script>
+        // Initialize Supabase client
+        const supabaseUrl = 'https://jrljsjdggqanqesdxyvt.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpybGpzamRnZ3FhbnFlc2R4eXZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk3Nzg2NDksImV4cCI6MjA3NTM1NDY0OX0.TqG9StPjSoluiFHo-V3rGZBboWemAXZXf20E8uGA0a0';
+
+        const { createClient } = supabase;
+        const supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+
+        // Update status message
+        function updateStatus(message) {
+            const statusEl = document.getElementById('statusMessage');
+            if (statusEl) {
+                statusEl.textContent = message;
+            }
+        }
+
+        // Show success state
+        function showSuccess() {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.add('hidden');
+            document.getElementById('successState').classList.remove('hidden');
+        }
+
+        // Show error state
+        function showError(message) {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('successState').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        // Attempt to open mobile app via deep link with token
+        function openMobileApp() {
+            // Build the deep link with the full URL including token
+            // Supabase SDK in the mobile app will automatically handle this format
+            const currentUrl = window.location.href;
+            const deepLink = `cs42calculator://recovery?${window.location.search.substring(1)}`;
+            console.log('Attempting to open mobile app:', deepLink);
+
+            // Try to open the app
             window.location.href = deepLink;
 
-            // If user is still on page after 2 seconds, they probably don't have the app
+            // Give it 3 seconds before showing fallback options
             setTimeout(() => {
-                console.log('Mobile app not detected, staying on web page');
-            }, 2000);
+                console.log('Deep link attempted - showing fallback options');
+            }, 3000);
         }
+
+        // Main password reset handler
+        async function handlePasswordReset() {
+            try {
+                updateStatus('Checking authentication...');
+
+                // Supabase automatically handles the token exchange from the URL
+                // when the page loads. We just need to check the session.
+                const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+
+                if (sessionError) {
+                    console.error('Session error:', sessionError);
+                    showError('Failed to verify reset link: ' + sessionError.message);
+                    return;
+                }
+
+                if (!session) {
+                    console.error('No session found');
+                    showError('This password reset link is invalid or has expired. Please request a new one.');
+                    return;
+                }
+
+                // Check if this is a password recovery event
+                updateStatus('Authentication verified! Preparing to open app...');
+                console.log('Session established:', session);
+
+                // Show success and attempt deep link
+                showSuccess();
+                setTimeout(() => {
+                    openMobileApp();
+                }, 500);
+
+            } catch (error) {
+                console.error('Unexpected error:', error);
+                showError('An unexpected error occurred: ' + error.message);
+            }
+        }
+
+        // Listen for auth state changes
+        supabaseClient.auth.onAuthStateChange((event, session) => {
+            console.log('Auth state changed:', event, session);
+
+            if (event === 'PASSWORD_RECOVERY') {
+                console.log('Password recovery event detected');
+                updateStatus('Password recovery verified!');
+            } else if (event === 'SIGNED_IN' && session) {
+                console.log('User signed in with session');
+                updateStatus('Session established!');
+            }
+        });
+
+        // Start the password reset flow when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded, starting password reset flow...');
+            handlePasswordReset();
+        });
     </script>
 </body>
 </html>
