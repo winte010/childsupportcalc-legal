@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Child Support Calculator</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/app/favicon.png"/>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-cream: #F8F5EA;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --accent-blue: #4A80FF;
+            --card-bg: #fff;
+            --border-radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(248, 245, 234, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 60px 0 32px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .faq-item p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .faq-item ul {
+            margin: 16px 0 0 24px;
+            color: var(--text-gray);
+        }
+
+        .faq-item li {
+            margin-bottom: 8px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin: 60px 0;
+            border: 2px solid var(--accent-blue);
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .contact-card p {
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+
+        .btn-contact {
+            background: var(--accent-blue);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 128, 255, 0.3);
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 32px;
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .nav-container {
+                padding: 16px 20px;
+            }
+
+            .faq-item {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span>⚖️</span>
+                <span>Child Support Calculator</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <h1>Support & FAQ</h1>
+        <p class="subtitle">Find answers to common questions or get in touch with our team.</p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <h3>How do I start my 7-day free trial?</h3>
+            <p>Download the app from the App Store and create an account. You'll automatically start your 7-day free trial with full access to all premium features. You can cancel anytime during the trial without charge.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What happens after my free trial ends?</h3>
+            <p>After 7 days, you'll be automatically enrolled in the monthly subscription at $7.99/month. You can cancel anytime before the trial ends to avoid charges. Manage your subscription through your App Store account settings.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How accurate are the calculations?</h3>
+            <p>Our calculations are based on official state child support guidelines. However, the app provides estimates only and is not legal advice. Actual court-ordered amounts may differ based on specific circumstances. Always consult with a qualified attorney for legal guidance.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I use this app in my state?</h3>
+            <p>Currently, the app supports calculations based on Alabama child support guidelines. We're actively working to add support for additional states. Check back for updates or contact us to request your state.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What's included in the free version?</h3>
+            <p>The free version allows you to try the calculator with limited calculations. You can see how the app works and understand the calculation methodology. Premium features include:</p>
+            <ul>
+                <li>Unlimited calculations</li>
+                <li>PDF export (court-ready forms)</li>
+                <li>Cloud storage and sync</li>
+                <li>Easy sharing via email/text</li>
+                <li>Saved calculation history</li>
+            </ul>
+        </div>
+
+        <div class="faq-item">
+            <h3>How do I cancel my subscription?</h3>
+            <p>You can cancel your subscription anytime through your App Store account settings:</p>
+            <ul>
+                <li>Open Settings on your iPhone</li>
+                <li>Tap your name at the top</li>
+                <li>Tap Subscriptions</li>
+                <li>Select Child Support Calculator</li>
+                <li>Tap Cancel Subscription</li>
+            </ul>
+            <p>Your access will continue until the end of your current billing period.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Is my data secure and private?</h3>
+            <p>Yes. All your data is encrypted in transit and at rest. We use Supabase for secure cloud storage. Your calculations and personal information are never shared with third parties. You can export or delete your data anytime. See our <a href="/privacy">Privacy Policy</a> for details.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I share calculations with clients or opposing counsel?</h3>
+            <p>Yes! Premium subscribers can easily share calculations via email or text message. The recipient will receive a formatted summary of the calculation. This is especially useful for family law attorneys coordinating with clients or other attorneys.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>What PDF forms does the app generate?</h3>
+            <p>The app generates court-ready PDF forms pre-filled with your calculation data. These forms are based on official state guidelines and can be submitted directly to the court. The exact forms vary by state.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I use the app offline?</h3>
+            <p>You need an internet connection to save calculations to the cloud and generate PDFs. However, you can perform basic calculations offline. Any saved calculations will sync when you're back online.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Do you offer discounts for law firms or organizations?</h3>
+            <p>We're exploring enterprise pricing for law firms and legal organizations. Please contact us at <a href="mailto:support@junotech.app">support@junotech.app</a> to discuss your needs.</p>
+        </div>
+
+        <div class="contact-card">
+            <h3>Still have questions?</h3>
+            <p>We're here to help! Send us an email and we'll get back to you as soon as possible.</p>
+            <a href="mailto:support@junotech.app" class="btn-contact">Email Support</a>
+        </div>
+
+        <div style="margin: 60px 0; text-align: center;">
+            <p style="color: var(--text-gray);">
+                <a href="/">Home</a> ·
+                <a href="/privacy">Privacy Policy</a> ·
+                <a href="/terms">Terms of Service</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

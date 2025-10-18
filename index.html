@@ -1,38 +1,458 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional child support calculations in seconds. Unlimited calculations, court-ready PDFs. 7-day free trial - $7.99/month after.">
+    <title>Child Support Calculator - Professional Calculations & Court-Ready PDFs</title>
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/app/favicon.png"/>
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+    <!-- iOS meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/app/icons/Icon-192.png">
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Professional child support calculator for Alabama. Accurate estimates based on official state guidelines.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Child Support Calculator">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+        :root {
+            --bg-cream: #F8F5EA;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --accent-blue: #4A80FF;
+            --accent-pink: #EE50C2;
+            --accent-orange: #EE6D44;
+            --card-bg: #fff;
+            --border-radius: 16px;
+        }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-  <title>Child Support Calculator</title>
-  <link rel="manifest" href="manifest.json">
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(248, 245, 234, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 15px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 128, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 120px auto 80px;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-emoji {
+            font-size: 72px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-app-store {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        .btn-app-store:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-web-app {
+            background: white;
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+        }
+
+        .btn-web-app:hover {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        /* Features */
+        .features {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            transition: transform 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Pricing */
+        .pricing {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 48px;
+            border: 2px solid var(--accent-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-pink);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 24px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 16px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .checkmark {
+            color: var(--accent-blue);
+            margin-right: 12px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .copyright {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-container {
+                padding: 16px 20px;
+            }
+
+            .hero {
+                margin: 100px auto 60px;
+                padding: 40px 20px;
+            }
+
+            .features, .pricing {
+                padding: 0 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span>⚖️</span>
+                <span>Child Support Calculator</span>
+            </a>
+            <div class="nav-links">
+                <a href="/support">Support</a>
+                <a href="/app" class="btn-primary">Launch Web App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <span class="hero-emoji">⚖️</span>
+        <h1>Professional Child Support Calculations</h1>
+        <p>Court-ready PDFs in seconds. Unlimited calculations with state guidelines compliance. 7-day free trial.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/app/child-support-calculator" class="btn-large btn-app-store">Download for iOS</a>
+            <a href="/app" class="btn-large btn-web-app">Try Web App</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <h2 class="section-title">Built for Professionals</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Fast & Accurate</h3>
+                <p>Calculate child support obligations in seconds based on official state guidelines. No manual calculations or spreadsheets needed.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📄</span>
+                <h3>Court-Ready PDFs</h3>
+                <p>Generate professional PDFs ready for court submission. Pre-filled official forms save hours of paperwork.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💾</span>
+                <h3>Save & Share</h3>
+                <p>Store unlimited calculations in the cloud. Easily share with clients, opposing counsel, or mediators via email or text.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3>Secure & Private</h3>
+                <p>Your data is encrypted and never shared. All calculations stay private and can be exported or deleted anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <h2 class="section-title">Simple Pricing</h2>
+        <div class="pricing-card">
+            <div class="pricing-badge">7-Day Free Trial</div>
+            <h3>Premium</h3>
+            <div class="price">$7.99<span>/month</span></div>
+            <ul class="pricing-features">
+                <li><span class="checkmark">✓</span> Unlimited calculations</li>
+                <li><span class="checkmark">✓</span> Court-ready PDF export</li>
+                <li><span class="checkmark">✓</span> Cloud storage & sync</li>
+                <li><span class="checkmark">✓</span> Easy sharing via email/text</li>
+                <li><span class="checkmark">✓</span> State guidelines compliance</li>
+                <li><span class="checkmark">✓</span> Regular updates</li>
+            </ul>
+            <p style="color: var(--text-gray); font-size: 14px; margin-top: 24px;">
+                Free version available with limited calculations. Cancel anytime.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+            <a href="/support">Support</a>
+            <a href="mailto:support@junotech.app">Contact</a>
+        </div>
+        <p class="copyright">© 2025 Juno Technology. All rights reserved.</p>
+    </footer>
 </body>
 </html>
