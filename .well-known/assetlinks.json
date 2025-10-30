@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.junotech.childsupportcalc",
+      "sha256_cert_fingerprints": [
+        "B4:4A:06:FB:E7:9A:72:EE:23:EB:3F:D1:7A:7E:10:A6:3A:8B:49:28:17:C5:6B:DD:5C:22:F0:0E:BE:97:0F:61"
+      ]
+    }
+  }
+]
