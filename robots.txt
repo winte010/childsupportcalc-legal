@@ -1,0 +1,10 @@
+# Child Support Calculator - robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://childsupportcalc.junotech.app/sitemap.xml
+
+# Crawl delay (be nice to servers)
+Crawl-delay: 1
