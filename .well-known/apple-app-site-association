@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "YPP39DXHU9.com.junotech.childsupport",
+        "paths": [
+          "/email-confirmation/*",
+          "/email-confirmed/*",
+          "/password-reset/*"
+        ]
+      }
+    ]
+  }
+}
