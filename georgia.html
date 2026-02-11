@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georgia Child Support Calculator | Juno - 2026 Updated Guidelines</title>
+    <meta name="description" content="Professional Georgia child support calculator with 2026 updates including mandatory parenting time adjustment and expanded income table. Income Shares Model for GA family law attorneys.">
+    <meta name="keywords" content="Georgia child support calculator, GA child support, Income Shares Model, 2026 parenting time adjustment, expanded income table, Georgia family law">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Georgia Child Support Calculator | Juno">
+    <meta property="og:description" content="Professional Georgia child support calculator with 2026 updates">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://childsupportcalc.junotech.app/georgia">
+
+    <style>
+        :root {
+            --primary-blue: #3949AB;
+            --primary-blue-dark: #303F9F;
+            --bg-light: #F5F5F5;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .legal-reference {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Update Banner */
+        .update-banner {
+            background: linear-gradient(135deg, #FFA726, #FB8C00);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .update-banner .icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .update-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Changes List */
+        .changes-grid {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .changes-grid h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .change-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .change-item:last-child {
+            border-bottom: none;
+        }
+
+        .change-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .change-item p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Key Factors */
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .factor-item {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .factor-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#3949AB"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+                </svg>
+                <div class="logo-text">
+                    <h1>Juno</h1>
+                    <p>Child Support Calculator</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#states">States</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="cta-button">Download App</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="state-badge">🍑 Georgia</div>
+            <h1>Georgia Child Support Calculator</h1>
+            <p>Professional-grade calculations using Georgia's Income Shares Model with 2026 guideline updates. Built for family law attorneys practicing in Georgia courts.</p>
+            <div class="legal-reference">Georgia Official Child Support Calculator Methodology</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="update-banner">
+            <div class="icon">⚡</div>
+            <div class="update-content">
+                <h3>January 1, 2026 Update: Major Guideline Changes</h3>
+                <p>Effective January 1, 2026, Georgia child support guidelines were significantly updated. Mandatory parenting time adjustments (no longer optional), new low-income adjustments, expanded income table to $40,000/month, and updated Basic Child Support Obligation table. Juno reflects all 2026 changes.</p>
+            </div>
+        </div>
+
+        <div class="changes-grid">
+            <h3>2026 Guideline Changes Summary</h3>
+            <div class="change-item">
+                <h4>Mandatory Parenting Time Adjustment</h4>
+                <p>Previously optional, parenting time adjustments are now mandatory in all Georgia child support calculations. Calculated using the mathematical formula (days^2.5) to determine the adjustment percentage.</p>
+            </div>
+            <div class="change-item">
+                <h4>Low-Income Adjustment (New)</h4>
+                <p>New provisions provide relief for low-income parents, ensuring guidelines do not impose impossible financial burdens on parents earning below specified thresholds.</p>
+            </div>
+            <div class="change-item">
+                <h4>Expanded Income Table</h4>
+                <p>The income table for calculating child support has been expanded from $30,000/month to $40,000/month, providing guidance for higher-income parents.</p>
+            </div>
+            <div class="change-item">
+                <h4>Updated Obligation Table</h4>
+                <p>The Basic Child Support Obligation table has been updated to reflect current economic conditions and child-rearing costs in Georgia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">How Georgia Calculates Child Support</h2>
+        <p class="section-subtitle">Georgia's Income Shares Model combines both parents' income with parenting time adjustments for equitable support calculations</p>
+
+        <div class="factors-list">
+            <div class="factor-item">
+                <h4>Combined Gross Income</h4>
+                <p>Add together both parents' gross income from all sources: wages, salary, self-employment, bonuses, commissions, retirement income, investment returns, and other regular income.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Deductions</h4>
+                <p>Subtract allowable deductions: federal/state income taxes, FICA, health insurance for the child, court-ordered child support for other children, and other mandated payments.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Basic Obligation Lookup</h4>
+                <p>Use the updated 2026 Basic Child Support Obligation table to find the base support amount based on combined net income and number of children.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Parenting Time Adjustment</h4>
+                <p>Apply the mandatory parenting time adjustment using the formula (days^2.5) to modify the base obligation based on each parent's overnight percentage.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Income Share Allocation</h4>
+                <p>Divide the adjusted obligation between parents based on their proportional share of combined net income.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Add-On Expenses</h4>
+                <p>Add proportional allocations of health insurance, childcare, and extraordinary medical expenses to the base support amount.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Why Georgia Attorneys Choose Juno</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>2026 Compliant</h3>
+                <p>Automatically applies all January 1, 2026 guideline changes including mandatory parenting time adjustments and expanded income tables up to $40,000/month.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Parenting Time Formula</h3>
+                <p>Implements Georgia's mathematical parenting time adjustment formula (days^2.5) accurately to determine adjustment percentages based on overnight percentages.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Georgia Court Forms</h3>
+                <p>Generate completed Georgia child support worksheets and court forms ready for filing in Superior Courts across all Georgia circuits.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Low-Income Relief</h3>
+                <p>Automatically detects low-income scenarios and applies 2026 low-income adjustment provisions for appropriate relief.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Income Table Updates</h3>
+                <p>Reflects the 2026 expanded income table to $40,000/month with appropriate calculations for above-guideline income scenarios.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Variable Income Handling</h3>
+                <p>Properly calculates support for self-employed parents, commission-based income, bonuses, and seasonal employment with Georgia-specific income averaging.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Georgia-Specific Features</h2>
+        <p class="section-subtitle">Purpose-built for Georgia family law practice and 2026 requirements</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Superior Court Compliance</h3>
+                <p>Forms and calculations formatted specifically for Georgia Superior Courts and all judicial circuits handling family law matters.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Updated Obligation Table</h3>
+                <p>Integrates the 2026 Basic Child Support Obligation table for accurate base support calculations.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧮</div>
+                <h3>Mandatory Adjustments</h3>
+                <p>All parenting time adjustments are mandatory, automatically calculated and applied to every Georgia child support determination.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Multi-Child Calculations</h3>
+                <p>Accurate support calculations for multiple children with proper modifications based on number of children.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Calculating Georgia Child Support Today</h2>
+        <p>Join hundreds of Georgia family law attorneys using Juno with the latest 2026 guideline updates and mandatory parenting time adjustments.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="btn-primary">Download for iOS</a>
+            <a href="index.html#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.85;">7-day free trial • $7.99/month • Cancel anytime</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Juno</h3>
+                <p style="color: #ccc;">Professional child support calculators for family law attorneys.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Supported States</h3>
+                <ul>
+                    <li><a href="index.html#states">All States</a></li>
+                    <li><a href="/california">California</a></li>
+                    <li><a href="/texas">Texas</a></li>
+                    <li><a href="/florida">Florida</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://www.georgia.gov/" target="_blank">Georgia.gov</a></li>
+                    <li><a href="https://dhs.georgia.gov/human-services/child-support" target="_blank">Georgia DFCS Child Support</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Juno Technology. All rights reserved. This calculator is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </footer>
+</body>
+</html>

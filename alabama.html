@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alabama Child Support Calculator | Juno - Income Shares Model</title>
+    <meta name="description" content="Professional Alabama child support calculator using the Income Shares Model. Calculate accurate support with self-support reserve and proportional share calculations. Trusted by AL family law attorneys.">
+    <meta name="keywords" content="Alabama child support calculator, AL child support, Income Shares Model, Alabama Schedule of Basic Child-Support Obligations, Alabama courts, family law">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Alabama Child Support Calculator | Juno">
+    <meta property="og:description" content="Professional Alabama child support calculator using the Income Shares Model">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://childsupportcalc.junotech.app/alabama">
+
+    <style>
+        :root {
+            --primary-blue: #3949AB;
+            --primary-blue-dark: #303F9F;
+            --bg-light: #F5F5F5;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .legal-reference {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .formula-box h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .self-support-box {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .self-support-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .self-support-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Key Factors */
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .factor-item {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .factor-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .self-support-amount {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#3949AB"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+                </svg>
+                <div class="logo-text">
+                    <h1>Juno</h1>
+                    <p>Child Support Calculator</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#states">States</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="cta-button">Download App</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="state-badge">🏛️ Alabama</div>
+            <h1>Alabama Child Support Calculator</h1>
+            <p>Professional-grade calculations following Alabama's Income Shares Model and Schedule of Basic Child-Support Obligations. Built for family law attorneys practicing in Alabama courts.</p>
+            <div class="legal-reference">Based on Alabama Rules of Judicial Administration Rule 32</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">How Alabama Calculates Child Support</h2>
+        <p class="section-subtitle">Alabama uses the Income Shares Model with a self-support reserve, ensuring children receive support proportional to parental income shares</p>
+
+        <div class="formula-box">
+            <h3>Alabama's Self-Support Reserve</h3>
+            <p>Alabama law recognizes that each parent must retain a minimum income level for their own basic living expenses. Before calculating child support obligations, Alabama law deducts the self-support reserve from each parent's income.</p>
+        </div>
+
+        <div class="self-support-box">
+            <h3>Monthly Self-Support Reserve</h3>
+            <div class="self-support-amount">$981</div>
+            <p>Minimum monthly income retained by each parent for basic living expenses</p>
+            <p style="margin-top: 1rem; opacity: 0.9;">This reserve is subtracted from each parent's net income before calculating proportional shares and child support obligations.</p>
+        </div>
+
+        <div class="factors-list" style="margin-top: 2rem;">
+            <div class="factor-item">
+                <h4>Income After Reserve</h4>
+                <p>Income available for child support equals gross income minus all allowable deductions and the $981 self-support reserve.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Proportional Calculation</h4>
+                <p>Each parent's proportional share of combined available income determines their child support percentage (typically 17-25% per child).</p>
+            </div>
+            <div class="factor-item">
+                <h4>Schedule Reference</h4>
+                <p>Alabama courts reference the Schedule of Basic Child-Support Obligations based on combined parental income and number of children.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Key Factors in Alabama Calculations</h2>
+
+        <div class="factors-list">
+            <div class="factor-item">
+                <h4>Gross Income Sources</h4>
+                <p>Wages, salary, self-employment, bonuses, commissions, rental income, dividends, disability benefits, retirement/pension, and any other regular income sources.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Allowable Deductions</h4>
+                <p>Federal income tax, state income tax, FICA/Social Security, Medicare, court-ordered child support for other children, and health insurance premiums.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Number of Children</h4>
+                <p>The Schedule of Basic Child-Support Obligations provides different support amounts based on the number of children (typically higher percentages for additional children).</p>
+            </div>
+            <div class="factor-item">
+                <h4>Health Insurance Costs</h4>
+                <p>Health insurance premiums for the child are added to basic support and divided proportionally between parents based on income share.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Childcare Expenses</h4>
+                <p>Work-related childcare and education costs are additional obligations divided proportionally based on each parent's income percentage.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Extraordinary Medical Expenses</h4>
+                <p>Uninsured medical, dental, and orthodontic costs are split proportionally between parents outside the basic child support amount.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Why Alabama Attorneys Choose Juno</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Rules of Judicial Administration Rule 32</h3>
+                <p>Calculations strictly follow Alabama's guidelines as established in Rule 32, ensuring compliance with Alabama court requirements across all circuit courts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Self-Support Reserve Integration</h3>
+                <p>Automatically applies Alabama's $981 monthly self-support reserve and calculates available income correctly based on Rule 32 standards.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Alabama Court Forms</h3>
+                <p>Generate completed Alabama child support worksheets and court forms ready for filing in circuit courts across all 67 counties.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧮</div>
+                <h3>Proportional Share Calculator</h3>
+                <p>Accurately calculates each parent's proportional share of combined income (17-25% per child based on Alabama guidelines) with detailed breakdowns.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Add-On Expense Allocation</h3>
+                <p>Properly handles health insurance premiums, childcare costs, and extraordinary medical expenses with proportional allocation between parents.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Net Income Calculator</h3>
+                <p>Built-in Alabama tax calculator computes net income using current federal and state tax rates, FICA withholdings, and allowable deductions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Alabama-Specific Features</h2>
+        <p class="section-subtitle">Purpose-built for Alabama family law practice and court requirements</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏛️</div>
+                <h3>Circuit Court Compliance</h3>
+                <p>Forms and calculations formatted specifically for Alabama Circuit Courts handling family law matters statewide.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Schedule Lookup</h3>
+                <p>Complete integration with Alabama Schedule of Basic Child-Support Obligations for all income levels and child configurations.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Modification Analysis</h3>
+                <p>Compare current support orders to updated calculations to determine if a material change exists under Alabama law.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Multiple Children Support</h3>
+                <p>Accurate calculations for multiple children from different relationships with proper adjustments per Alabama guidelines.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Calculating Alabama Child Support Today</h2>
+        <p>Join hundreds of Alabama family law attorneys using Juno for accurate, court-ready child support calculations following Rule 32.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="btn-primary">Download for iOS</a>
+            <a href="index.html#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.85;">7-day free trial • $7.99/month • Cancel anytime</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Juno</h3>
+                <p style="color: #ccc;">Professional child support calculators for family law attorneys.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Supported States</h3>
+                <ul>
+                    <li><a href="index.html#states">All States</a></li>
+                    <li><a href="/california">California</a></li>
+                    <li><a href="/texas">Texas</a></li>
+                    <li><a href="/florida">Florida</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://judicial.alabama.gov/" target="_blank">Alabama Courts</a></li>
+                    <li><a href="https://alabamaadministrativecode.alabama.gov/" target="_blank">Rule 32</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Juno Technology. All rights reserved. This calculator is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </footer>
+</body>
+</html>

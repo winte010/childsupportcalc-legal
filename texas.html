@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Child Support Calculator | Juno - 2026 Updated Income Cap</title>
+    <meta name="description" content="Professional Texas child support calculator with 2026 income cap ($11,700). Calculate accurate support using TX percentage-based guidelines per Family Code § 154.125. Trusted by Texas family law attorneys.">
+    <meta name="keywords" content="Texas child support calculator, TX child support, Family Code 154.125, Texas percentage guidelines, net resources, 2026 income cap, Texas family law">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Texas Child Support Calculator | Juno">
+    <meta property="og:description" content="Professional Texas child support calculator with updated 2026 income cap">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://childsupportcalc.junotech.app/texas">
+
+    <style>
+        :root {
+            --primary-blue: #3949AB;
+            --primary-blue-dark: #303F9F;
+            --bg-light: #F5F5F5;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-white: #FFFFFF;
+            --texas-accent: #BF0A30;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .legal-reference {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Update Banner */
+        .update-banner {
+            background: linear-gradient(135deg, #D32F2F, #C62828);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .update-banner .icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .update-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Percentage Table */
+        .percentage-table {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .percentage-table h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: var(--bg-light);
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        .percentage {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .max-amount {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Income Cap Highlight */
+        .income-cap-box {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .income-cap-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .income-cap-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+
+        .income-cap-note {
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Key Factors */
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .factor-item {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .factor-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .income-cap-amount {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#3949AB"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+                </svg>
+                <div class="logo-text">
+                    <h1>Juno</h1>
+                    <p>Child Support Calculator</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#states">States</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="cta-button">Download App</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="state-badge">⭐ Texas</div>
+            <h1>Texas Child Support Calculator</h1>
+            <p>Professional-grade calculations following Texas Family Code § 154.125. Built for family law attorneys practicing in Texas District Courts with the updated 2026 income cap.</p>
+            <div class="legal-reference">Based on Texas Percentage-of-Income Guidelines</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="update-banner">
+            <div class="icon">🚨</div>
+            <div class="update-content">
+                <h3>September 2025 Update: New $11,700 Monthly Income Cap</h3>
+                <p>Effective September 1, 2025, the income cap increased from $9,200 to $11,700 per month. This affects maximum guideline child support calculations. Juno automatically applies the current cap.</p>
+            </div>
+        </div>
+
+        <div class="income-cap-box">
+            <h3>2026 Texas Income Cap for Guideline Support</h3>
+            <div class="income-cap-amount">$11,700</div>
+            <p>Monthly net resources cap (effective Sept 1, 2025)</p>
+            <p class="income-cap-note">Guideline percentages apply to the first $11,700 of monthly net resources. Support for income above this amount is determined on a case-by-case basis.</p>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Texas Percentage Guidelines</h2>
+        <p class="section-subtitle">Texas uses a straightforward percentage-based formula applied to the paying parent's net monthly resources</p>
+
+        <div class="percentage-table">
+            <h3>Standard Guideline Percentages</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number of Children</th>
+                        <th>Percentage of Net Resources</th>
+                        <th>Maximum Monthly Payment (2026)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 Child</td>
+                        <td><span class="percentage">20%</span></td>
+                        <td class="max-amount">$2,340 per month</td>
+                    </tr>
+                    <tr>
+                        <td>2 Children</td>
+                        <td><span class="percentage">25%</span></td>
+                        <td class="max-amount">$2,925 per month</td>
+                    </tr>
+                    <tr>
+                        <td>3 Children</td>
+                        <td><span class="percentage">30%</span></td>
+                        <td class="max-amount">$3,510 per month</td>
+                    </tr>
+                    <tr>
+                        <td>4 Children</td>
+                        <td><span class="percentage">35%</span></td>
+                        <td class="max-amount">$4,095 per month</td>
+                    </tr>
+                    <tr>
+                        <td>5+ Children</td>
+                        <td><span class="percentage">40%</span></td>
+                        <td class="max-amount">$4,680 per month</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top: 1.5rem; color: var(--text-gray); font-size: 0.95rem;">
+                <strong>Note:</strong> Maximum amounts are based on the $11,700 monthly income cap. For incomes below $1,000/month, special low-income guidelines apply.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">How Texas Calculates Net Resources</h2>
+        <p class="section-subtitle">Understanding what counts as "net monthly resources" under Texas law</p>
+
+        <div class="factors-list">
+            <div class="factor-item">
+                <h4>All Sources of Income</h4>
+                <p>Wages, salary, commissions, bonuses, overtime, tips, self-employment income, rental income, retirement/pension, disability benefits, unemployment, interest and dividends.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Allowable Deductions</h4>
+                <p>Federal income tax (single rate), state income tax, FICA/Social Security, union dues, health insurance premiums for the child.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Multiple Families</h4>
+                <p>If the paying parent has children from other relationships, adjustments may apply to the percentage used in the calculation.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Above-Cap Income</h4>
+                <p>For net resources exceeding $11,700/month, the court determines support based on the needs of the child and may exceed guideline amounts.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Low-Income Provisions</h4>
+                <p>Special guidelines apply when the paying parent's net monthly resources are less than $1,000, with reduced percentages to prevent financial hardship.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Medical Support</h4>
+                <p>Health insurance and uninsured medical expenses are handled separately from the basic child support percentage calculation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Why Texas Attorneys Choose Juno</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💯</div>
+                <h3>2026-Updated Calculations</h3>
+                <p>Automatically applies the current $11,700 income cap and correct percentage guidelines. Never worry about using outdated cap amounts or tax tables.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Texas-Specific Forms</h3>
+                <p>Generate completed Texas child support worksheets and court forms ready for filing in District Courts or County Courts at Law across all 254 counties.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧮</div>
+                <h3>Net Resources Calculator</h3>
+                <p>Built-in Texas tax calculator automatically computes net monthly resources using current federal and state tax rates, FICA withholdings, and allowable deductions.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Multiple Family Support</h3>
+                <p>Handle complex scenarios where the obligor has children from multiple relationships, with proper adjustments to the guideline percentages.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Self-Employment Income</h3>
+                <p>Properly calculate net resources for self-employed parents, including business expense deductions and variable income averaging per Texas guidelines.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Low-Income Calculations</h3>
+                <p>Automatic detection and application of low-income adjustment provisions for obligors with net monthly resources under $1,000.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Texas-Specific Features</h2>
+        <p class="section-subtitle">Purpose-built for Texas family law practice</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>District & County Courts</h3>
+                <p>Forms formatted for Texas District Courts and County Courts at Law handling family law matters statewide.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Above-Guideline Analysis</h3>
+                <p>Calculate support for high-income parents exceeding the $11,700 cap with detailed documentation for court presentation.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Modification Scenarios</h3>
+                <p>Compare current support orders to updated calculations to determine if a material and substantial change exists for modification.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Medical Support Allocation</h3>
+                <p>Separate calculations for health insurance premiums and uninsured medical expenses according to Texas requirements.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Calculating Texas Child Support Today</h2>
+        <p>Join hundreds of Texas family law attorneys using Juno for accurate, court-ready child support calculations with the latest 2026 income cap.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="btn-primary">Download for iOS</a>
+            <a href="index.html#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.85;">7-day free trial • $7.99/month • Cancel anytime</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Juno</h3>
+                <p style="color: #ccc;">Professional child support calculators for family law attorneys.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Supported States</h3>
+                <ul>
+                    <li><a href="/california">California</a></li>
+                    <li><a href="/texas">Texas</a></li>
+                    <li><a href="/florida">Florida</a></li>
+                    <li><a href="index.html#states">View All 13 States</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://csapps.oag.texas.gov/monthly-child-support-calculator" target="_blank">TX Official Calculator</a></li>
+                    <li><a href="https://statutes.capitol.texas.gov/Docs/FA/htm/FA.154.htm" target="_blank">Family Code § 154.125</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Juno Technology. All rights reserved. This calculator is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </footer>
+</body>
+</html>

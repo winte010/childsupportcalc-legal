@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michigan Child Support Calculator | Juno - 2025 Formula Manual</title>
+    <meta name="description" content="Professional Michigan child support calculator with 2025 Formula Manual (effective Jan 1, 2025). Parenting time adjustments, medical support, net income calculation. Trusted by MI family law attorneys.">
+    <meta name="keywords" content="Michigan child support calculator, MI child support, Michigan Formula Manual, parenting time, medical support, net income, Michigan Circuit Court">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Michigan Child Support Calculator | Juno">
+    <meta property="og:description" content="Professional Michigan child support calculator with 2025 Formula Manual">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://childsupportcalc.junotech.app/michigan">
+
+    <style>
+        :root {
+            --primary-blue: #3949AB;
+            --primary-blue-dark: #303F9F;
+            --bg-light: #F5F5F5;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .legal-reference {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Update Banner */
+        .update-banner {
+            background: linear-gradient(135deg, #FFA726, #FB8C00);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .update-banner .icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .update-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Formula Components */
+        .formula-box {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .formula-box h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .component-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .component-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .component-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Key Factors */
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .factor-item {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .factor-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#3949AB"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+                </svg>
+                <div class="logo-text">
+                    <h1>Juno</h1>
+                    <p>Child Support Calculator</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#states">States</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="cta-button">Download App</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="state-badge">🏞️ Michigan</div>
+            <h1>Michigan Child Support Calculator</h1>
+            <p>Professional-grade calculations using the Michigan Child Support Formula with 2025 Formula Manual updates. Built for family law attorneys in Michigan Circuit Courts.</p>
+            <div class="legal-reference">Based on Michigan Child Support Formula Manual</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="update-banner">
+            <div class="icon">📋</div>
+            <div class="update-content">
+                <h3>2025 Formula Manual: Effective January 1, 2025</h3>
+                <p>Michigan's child support guidelines were updated January 1, 2025. Juno implements the current 2025 Formula Manual with all component calculations including net income, healthcare, childcare, education, and parenting time adjustments.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">How Michigan Calculates Child Support</h2>
+        <p class="section-subtitle">Michigan's formula-based approach combines multiple components into a comprehensive support calculation</p>
+
+        <div class="formula-box">
+            <h3>Michigan Formula Components</h3>
+            <div class="component-list">
+                <div class="component-item">
+                    <h4>Net Income</h4>
+                    <p>Base monthly net income of paying parent(s)</p>
+                </div>
+                <div class="component-item">
+                    <h4>Healthcare</h4>
+                    <p>Health insurance premiums for the child</p>
+                </div>
+                <div class="component-item">
+                    <h4>Childcare</h4>
+                    <p>Work-related and education-related childcare expenses</p>
+                </div>
+                <div class="component-item">
+                    <h4>Education</h4>
+                    <p>Extraordinary education expenses beyond regular schooling</p>
+                </div>
+                <div class="component-item">
+                    <h4>Parenting Time</h4>
+                    <p>Adjustment based on overnight percentages and custody time</p>
+                </div>
+                <div class="component-item">
+                    <h4>Other Factors</h4>
+                    <p>Court can consider additional statutory deviation factors</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="factors-list">
+            <div class="factor-item">
+                <h4>Overnight Calculation</h4>
+                <p>Michigan counts actual overnight stays with the child. Parenting time credit is calculated as a percentage of overnights per year.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Medical Support</h4>
+                <p>Health insurance premiums and uninsured medical expenses are handled separately from base child support calculations.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Net Income Calculation</h4>
+                <p>Gross income minus taxes, FICA, health insurance, union dues, and mandatory retirement contributions.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Multiple Children</h4>
+                <p>Support amounts increase for each additional child based on Michigan's formula adjustments.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Shared Parenting</h4>
+                <p>When both parents share significant parenting time, the formula adjusts to account for both households' needs.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Annual Review</h4>
+                <p>Michigan law allows support orders to be reviewed and potentially modified when circumstances change significantly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Why Michigan Attorneys Choose Juno</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>2025 Formula Compliant</h3>
+                <p>Implements the current 2025 Formula Manual with all updated components and calculations for Michigan Circuit Courts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧮</div>
+                <h3>Multi-Component Calculation</h3>
+                <p>Accurately handles all formula components: net income, healthcare, childcare, education expenses, and parenting time adjustments.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Michigan Court Forms</h3>
+                <p>Generate completed Michigan child support worksheets and Family Division forms ready for filing in Circuit Courts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>Parenting Time Calculator</h3>
+                <p>Automatically calculates parenting time percentages from overnight counts and applies appropriate formula adjustments.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏥</div>
+                <h3>Medical Support Allocation</h3>
+                <p>Properly separates and allocates health insurance premiums and medical expenses per Michigan guidelines.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Self-Employment Support</h3>
+                <p>Handle self-employed parents with Michigan-specific business expense deductions and income averaging.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Michigan-Specific Features</h2>
+        <p class="section-subtitle">Purpose-built for Michigan family law practice</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Circuit Court Compliance</h3>
+                <p>Forms formatted for Michigan Circuit Courts Family Division across all counties.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Custody Schedule Integration</h3>
+                <p>Input custody arrangements and automatically calculate corresponding parenting time percentages.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Modification Review</h3>
+                <p>Compare existing orders to current calculations to determine if material change exists.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Deviation Documentation</h3>
+                <p>Document reasons for any deviations from guideline amounts for court presentation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Calculating Michigan Child Support Today</h2>
+        <p>Join hundreds of Michigan family law attorneys using Juno with the latest 2025 Formula Manual updates.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="btn-primary">Download for iOS</a>
+            <a href="index.html#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.85;">7-day free trial • $7.99/month • Cancel anytime</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Juno</h3>
+                <p style="color: #ccc;">Professional child support calculators for family law attorneys.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Supported States</h3>
+                <ul>
+                    <li><a href="index.html#states">All States</a></li>
+                    <li><a href="/california">California</a></li>
+                    <li><a href="/texas">Texas</a></li>
+                    <li><a href="/florida">Florida</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://www.michigan.gov/sos" target="_blank">Michigan.gov</a></li>
+                    <li><a href="https://courts.michigan.gov/divisions/familycourt/pages/default.aspx" target="_blank">Family Court Resources</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Juno Technology. All rights reserved. This calculator is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </footer>
+</body>
+</html>

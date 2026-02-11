@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florida Child Support Calculator | Juno - Income Shares Model</title>
+    <meta name="description" content="Professional Florida child support calculator using the Income Shares Model per Statute § 61.30. Calculate accurate support with combined income schedules and time-sharing adjustments. Trusted by FL family law attorneys.">
+    <meta name="keywords" content="Florida child support calculator, FL child support, Statute 61.30, income shares model, combined income, time-sharing, Florida family law, Circuit Court">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Florida Child Support Calculator | Juno">
+    <meta property="og:description" content="Professional Florida child support calculator using the Income Shares Model">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://childsupportcalc.junotech.app/florida">
+
+    <style>
+        :root {
+            --primary-blue: #3949AB;
+            --primary-blue-dark: #303F9F;
+            --bg-light: #F5F5F5;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-white: #FFFFFF;
+            --florida-accent: #FF6F00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .legal-reference {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Income Shares Explanation */
+        .income-shares-box {
+            background: var(--card-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .income-shares-box h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .step-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Key Factors */
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .factor-item {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .factor-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Timesharing Highlight */
+        .timeshare-box {
+            background: linear-gradient(135deg, var(--florida-accent), #F57C00);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .timeshare-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeshare-threshold {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeshare-threshold {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#3949AB"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+                </svg>
+                <div class="logo-text">
+                    <h1>Juno</h1>
+                    <p>Child Support Calculator</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#states">States</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="cta-button">Download App</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="state-badge">🌴 Florida</div>
+            <h1>Florida Child Support Calculator</h1>
+            <p>Professional-grade calculations following Florida Statute § 61.30 using the Income Shares Model. Built for family law attorneys practicing in Florida Circuit Courts.</p>
+            <div class="legal-reference">Based on Florida's Income Shares Model Guidelines</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">How Florida Calculates Child Support</h2>
+        <p class="section-subtitle">Florida uses the Income Shares Model, ensuring children receive the same proportion of parental income they would have if the family remained together</p>
+
+        <div class="income-shares-box">
+            <h3>The Income Shares Model: A 4-Step Process</h3>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Calculate Each Parent's Net Income</h4>
+                        <p>Start with gross income from all sources (wages, bonuses, self-employment, rental income, disability, etc.) and subtract allowable deductions like taxes, mandatory retirement, and health insurance premiums.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Combine Net Monthly Incomes</h4>
+                        <p>Add both parents' net monthly incomes together to determine the combined monthly income used for the next step.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Look Up Total Support on Guidelines Chart</h4>
+                        <p>Use Florida's statutory guidelines chart (based on combined net income and number of children) to find the presumptive monthly child support amount both parents should contribute.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Calculate Each Parent's Proportional Share</h4>
+                        <p>Divide the total support obligation based on each parent's percentage of the combined income. For example, if one parent earns 67% of combined income, they pay 67% of the total support obligation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Florida's Time-Sharing Adjustments</h2>
+
+        <div class="timeshare-box">
+            <h3>Important: 73-Overnight Threshold</h3>
+            <div class="timeshare-threshold">73+ Overnights</div>
+            <p>When either parent has at least 73 overnights per year (20% time-sharing), Florida's calculation changes significantly. The basic monthly obligation is multiplied by 1.5 to account for the needs of maintaining two households.</p>
+            <p style="margin-top: 1rem; opacity: 0.9;">This substantial adjustment recognizes that children incur costs in both homes when time-sharing is significant.</p>
+        </div>
+
+        <div class="factors-list" style="margin-top: 2rem;">
+            <div class="factor-item">
+                <h4>Overnight Counting</h4>
+                <p>Only overnight stays count toward the 73-night threshold. Daytime visits, even if they last most of the day, do not count unless the child sleeps over.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Substantial Time-Sharing</h4>
+                <p>Parents with 73+ overnights are considered to have "substantial time-sharing" triggering the 1.5x multiplier and different calculation methodology.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Credit for Overnight Expenses</h4>
+                <p>The parent with more overnights incurs direct costs during their time-sharing, which affects the final support calculation and may reduce or eliminate payments.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Key Factors in Florida Calculations</h2>
+
+        <div class="factors-list">
+            <div class="factor-item">
+                <h4>Combined Net Income</h4>
+                <p>Both parents' incomes are considered, not just the paying parent. This differs from percentage-of-income states and ensures support reflects both parents' financial capacity.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Number of Children</h4>
+                <p>Florida's guidelines chart shows different support amounts based on the number of children, with amounts increasing but not doubling as children are added.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Health Insurance Costs</h4>
+                <p>The cost of health insurance for the child is added to the basic support amount and divided proportionally between parents based on their income percentages.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Childcare Expenses</h4>
+                <p>Work-related or education-related childcare costs are added to support and allocated proportionally. These are considered necessary for parents to maintain employment.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Extraordinary Medical Expenses</h4>
+                <p>Uninsured medical, dental, and prescription costs exceeding $250 annually are split proportionally between parents outside the basic support amount.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Additional Children</h4>
+                <p>If a parent has other children they support, this may affect the calculation by reducing their available income for the child support at issue.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Why Florida Attorneys Choose Juno</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Official Guidelines Chart</h3>
+                <p>Uses Florida's statutory income shares guidelines chart exactly as mandated by § 61.30, ensuring calculations match what Florida Circuit Courts expect.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Form FL-12.902(e) Generation</h3>
+                <p>Automatically generates completed Florida Family Law Financial Affidavit and child support guidelines worksheets ready for court filing in all 67 counties.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>73-Overnight Multiplier</h3>
+                <p>Automatically detects substantial time-sharing scenarios and applies the 1.5x multiplier when either parent exceeds 73 overnights, with detailed breakdowns of the adjustment.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Net Income Calculator</h3>
+                <p>Built-in Florida tax calculator computes net income using current federal and state tax rates, FICA withholdings, and allowable deductions specific to Florida.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Add-On Expense Allocation</h3>
+                <p>Properly calculates and allocates health insurance, childcare, and extraordinary medical expenses proportionally based on each parent's income percentage.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Variable Income Handling</h3>
+                <p>Handle seasonal employment, bonuses, commissions, and self-employment income with averaging calculations and business expense deductions per Florida guidelines.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Florida-Specific Features</h2>
+        <p class="section-subtitle">Purpose-built for Florida's income shares model and court requirements</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Circuit Court Forms</h3>
+                <p>Forms formatted specifically for Florida Circuit Courts handling family law matters across all 20 judicial circuits.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏥</div>
+                <h3>Medical Expense Tracking</h3>
+                <p>Separate tracking for health insurance premiums vs. uninsured medical costs, with automatic application of the $250 threshold for extraordinary expenses.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Income Shares Chart Integration</h3>
+                <p>Complete integration with Florida's statutory guidelines chart, handling all combined income levels and child configurations accurately.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👶</div>
+                <h3>Multiple Children Support</h3>
+                <p>Accurate calculations for 1-6+ children using Florida's specific schedule, with proper allocation when children are from different relationships.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Calculating Florida Child Support Today</h2>
+        <p>Join hundreds of Florida family law attorneys using Juno for accurate, court-ready child support calculations using the Income Shares Model.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="btn-primary">Download for iOS</a>
+            <a href="index.html#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.85;">7-day free trial • $7.99/month • Cancel anytime</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Juno</h3>
+                <p style="color: #ccc;">Professional child support calculators for family law attorneys.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Supported States</h3>
+                <ul>
+                    <li><a href="/california">California</a></li>
+                    <li><a href="/texas">Texas</a></li>
+                    <li><a href="/florida">Florida</a></li>
+                    <li><a href="index.html#states">View All 13 States</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://www.flcourts.gov/Resources-Services/Court-Improvement/Family-Courts/Family-Law-Self-Help-Information/Child-Support" target="_blank">FL Court Resources</a></li>
+                    <li><a href="http://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.30.html" target="_blank">Florida Statute § 61.30</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Juno Technology. All rights reserved. This calculator is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </footer>
+</body>
+</html>

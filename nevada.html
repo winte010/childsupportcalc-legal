@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nevada Child Support Calculator | Juno - Tiered Percentage Model</title>
+    <meta name="description" content="Professional Nevada child support calculator with unique tiered percentage model (Feb 1, 2020 changes). No income cap, tiered rates for different income levels. Trusted by NV family law attorneys.">
+    <meta name="keywords" content="Nevada child support calculator, NV child support, tiered percentage model, no income cap, Nevada District Court, NAC 425, family law">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Nevada Child Support Calculator | Juno">
+    <meta property="og:description" content="Professional Nevada child support calculator with unique tiered percentage model">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://childsupportcalc.junotech.app/nevada">
+
+    <style>
+        :root {
+            --primary-blue: #3949AB;
+            --primary-blue-dark: #303F9F;
+            --bg-light: #F5F5F5;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .legal-reference {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Unique Feature Box */
+        .unique-box {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .unique-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Tier Table */
+        .tier-table {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .tier-table h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: var(--bg-light);
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Key Factors */
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .factor-item {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .factor-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tier-table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#3949AB"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+                </svg>
+                <div class="logo-text">
+                    <h1>Juno</h1>
+                    <p>Child Support Calculator</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#states">States</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="cta-button">Download App</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="state-badge">🎰 Nevada</div>
+            <h1>Nevada Child Support Calculator</h1>
+            <p>Professional-grade calculations using Nevada's unique tiered percentage-of-income model with NO income cap. Built for family law attorneys in Nevada District Courts.</p>
+            <div class="legal-reference">Based on NAC Chapter 425 (Effective February 1, 2020)</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="unique-box">
+            <h3>Nevada's Unique Tiered Percentage Model</h3>
+            <p style="margin-bottom: 1rem;">Effective February 1, 2020, Nevada changed to a tiered percentage model with NO income cap—unlike the old flat percentage system.</p>
+            <p>Different percentages apply to different income brackets, resulting in more equitable support across all income levels.</p>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Nevada Tiered Percentage Model</h2>
+        <p class="section-subtitle">Support percentages vary based on monthly income levels—no single cap applies</p>
+
+        <div class="tier-table">
+            <h3>Tier 1: $0-$6,000 Monthly Income</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number of Children</th>
+                        <th>Percentage of Income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 Child</td>
+                        <td><strong>16%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2 Children</td>
+                        <td><strong>22%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>3 Children</td>
+                        <td><strong>26%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>4 Children</td>
+                        <td><strong>28%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>5+ Children</td>
+                        <td><strong>+2% per child</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tier-table">
+            <h3>Tier 2: $6,001-$10,000 Monthly Income</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number of Children</th>
+                        <th>Percentage of Income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 Child</td>
+                        <td><strong>8%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2 Children</td>
+                        <td><strong>11%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>3 Children</td>
+                        <td><strong>13%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>4 Children</td>
+                        <td><strong>14%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>5+ Children</td>
+                        <td><strong>+1% per child</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tier-table">
+            <h3>Tier 3: Over $10,000 Monthly Income</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number of Children</th>
+                        <th>Percentage of Income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 Child</td>
+                        <td><strong>4%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2 Children</td>
+                        <td><strong>6%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>3 Children</td>
+                        <td><strong>6%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>4 Children</td>
+                        <td><strong>7%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>5+ Children</td>
+                        <td><strong>+0.5% per child</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="background: #fff3cd; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #ffc107;">
+            <p><strong>Note:</strong> Low-income parents use a special chart below the guideline amounts. Nevada allows for deviation from these percentages based on statutory factors.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Key Advantages of Nevada's System</h2>
+
+        <div class="factors-list">
+            <div class="factor-item">
+                <h4>No Income Cap</h4>
+                <p>Unlike the old system with a flat percentage, Nevada's tiered model applies to all income levels without a maximum cap.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Progressive Fairness</h4>
+                <p>Higher income levels pay lower percentages, creating a more equitable distribution of support obligations.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Flexibility</h4>
+                <p>Courts can deviate from guideline amounts based on statutory factors and individual circumstances.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Multiple Children Adjustment</h4>
+                <p>Each tier has specific percentages that increase for additional children, with diminishing increases for higher earners.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Special Low-Income Chart</h4>
+                <p>Parents earning below minimum guidelines can use a special chart for more reasonable support amounts.</p>
+            </div>
+            <div class="factor-item">
+                <h4>NAC Chapter 425</h4>
+                <p>All calculations comply with Nevada Administrative Code Chapter 425 standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Why Nevada Attorneys Choose Juno</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Tiered Percentage Model</h3>
+                <p>Accurately applies Nevada's three-tier percentage system with correct rates for each income bracket (Tier 1, 2, and 3).</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>No Income Cap</h3>
+                <p>Handles high-income support calculations with appropriate Tier 3 percentages for any income level above $10,000/month.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>NV Court Forms</h3>
+                <p>Generate completed Nevada child support worksheets and District Court forms ready for filing statewide.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Multi-Child Calculations</h3>
+                <p>Correctly applies percentage increases for additional children with proper tier-specific adjustments.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Low-Income Relief</h3>
+                <p>Applies special low-income chart for parents earning below guideline minimums.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>February 2020 Compliant</h3>
+                <p>Implements the current tiered model effective February 1, 2020, not the old flat percentage system.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Nevada-Specific Features</h2>
+        <p class="section-subtitle">Purpose-built for Nevada's unique tiered percentage system</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>District Court Compliance</h3>
+                <p>Forms formatted for Nevada District Courts (Family Division) across all counties.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Tier Boundary Calculations</h3>
+                <p>Properly handles income that spans multiple tiers with correct application of percentages.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Self-Employment Income</h3>
+                <p>Handle self-employed parents with Nevada-specific income calculations and business expense treatment.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Deviation Documentation</h3>
+                <p>Document reasons for any deviations from tiered guideline amounts for court presentation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Calculating Nevada Child Support Today</h2>
+        <p>Join Nevada family law attorneys using Juno for accurate tiered percentage calculations with no income cap.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="btn-primary">Download for iOS</a>
+            <a href="index.html#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.85;">7-day free trial • $7.99/month • Cancel anytime</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Juno</h3>
+                <p style="color: #ccc;">Professional child support calculators for family law attorneys.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Supported States</h3>
+                <ul>
+                    <li><a href="index.html#states">All States</a></li>
+                    <li><a href="/california">California</a></li>
+                    <li><a href="/texas">Texas</a></li>
+                    <li><a href="/florida">Florida</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://ndcourts.us/" target="_blank">Nevada Courts</a></li>
+                    <li><a href="https://dcfs.nv.gov/" target="_blank">Nevada DCFS</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Juno Technology. All rights reserved. This calculator is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </footer>
+</body>
+</html>
