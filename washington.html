@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washington Child Support Calculator | Juno - WSCSS Income Shares Calculations</title>
+    <meta name="description" content="Professional Washington child support calculator following the Washington State Child Support Schedule (WSCSS) and RCW 26.19. Calculate accurate support using net income shares, economic table lookup, and SSR limitations. Trusted by WA family law attorneys.">
+    <meta name="keywords" content="Washington child support calculator, WA child support, WSCSS calculator, Washington State Child Support Schedule, RCW 26.19, Washington family law, income shares model, net income, economic table, self-support reserve">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Washington Child Support Calculator | Juno">
+    <meta property="og:description" content="Professional Washington child support calculator following the WSCSS and RCW 26.19">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://childsupportcalc.junotech.app/washington">
+
+    <style>
+        :root {
+            --primary-blue: #3949AB;
+            --primary-blue-dark: #303F9F;
+            --bg-light: #F5F5F5;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 73, 171, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .state-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .legal-reference {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 1rem;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* How It Works */
+        .formula-box {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .formula {
+            font-size: 1.5rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-blue);
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .formula-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .legend-item strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Key Factors */
+        .factors-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .factor-item {
+            background: var(--card-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .factor-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Recent Changes */
+        .update-banner {
+            background: linear-gradient(135deg, #FFA726, #FB8C00);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .update-banner .icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .update-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Deductions Table */
+        .deductions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--bg-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .deductions-table th,
+        .deductions-table td {
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .deductions-table th {
+            background: var(--primary-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        .deductions-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <link rel="canonical" href="https://childsupportcalc.junotech.app/washington">
+    </head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#3949AB"/>
+                    <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+                </svg>
+                <div class="logo-text">
+                    <h1>Juno</h1>
+                    <p>Child Support Calculator</p>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#states">States</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="cta-button">Download App</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="state-badge">Washington State</div>
+            <h1>Washington Child Support Calculator</h1>
+            <p>Professional-grade calculations following the Washington State Child Support Schedule (WSCSS) and RCW 26.19. Built for family law attorneys and professionals practicing in Washington courts.</p>
+            <div class="legal-reference">Based on the Washington State Child Support Schedule (RCW 26.19, effective January 2026)</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="update-banner">
+            <div class="icon">⚖️</div>
+            <div class="update-content">
+                <h3>January 2026 WSCSS Updates Applied</h3>
+                <p>Washington's child support schedule was significantly updated effective January 1, 2026 per Engrossed House Bill 1014. The economic table now extends to $50,000/month combined net income, the self-support reserve increased to 180% of the federal poverty guideline ($2,394/month), and new mandatory deductions include Paid Family &amp; Medical Leave (PFML) and WA Cares. Juno automatically applies all 2026 standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">How Washington Calculates Child Support</h2>
+        <p class="section-subtitle">Washington uses the Income Shares Model, combining both parents' net monthly incomes to look up the basic child support obligation from the official economic table.</p>
+
+        <div class="formula-box">
+            <h3>The WSCSS Formula</h3>
+            <div class="formula">BCSO = Economic Table Lookup(Combined Net Income, # Children)</div>
+
+            <div class="formula-legend">
+                <div class="legend-item">
+                    <strong>Net Monthly Income</strong>
+                    <p>Gross income minus mandatory deductions: federal/state taxes, FICA, PFML, WA Cares, mandatory union dues, mandatory pension, and court-ordered maintenance paid</p>
+                </div>
+                <div class="legend-item">
+                    <strong>Combined Net Income</strong>
+                    <p>Sum of both parents' net monthly incomes (line 4 of the WSCSS worksheets), used to look up the BCSO from the economic table</p>
+                </div>
+                <div class="legend-item">
+                    <strong>BCSO</strong>
+                    <p>Basic Child Support Obligation from the 2026 economic table, based on combined net income and number of children (1-12)</p>
+                </div>
+                <div class="legend-item">
+                    <strong>Each Parent's Share</strong>
+                    <p>Each parent's proportional share of combined net income determines their portion of the BCSO (line 6 x line 5)</p>
+                </div>
+            </div>
+
+            <table class="deductions-table">
+                <thead>
+                    <tr>
+                        <th>Mandatory Deduction (Line 2)</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Federal &amp; State Income Taxes</td><td>Based on filing status and income level</td></tr>
+                    <tr><td>FICA</td><td>Social Security (6.2%) + Medicare (1.45%)</td></tr>
+                    <tr><td>PFML + WA Cares</td><td>Paid Family &amp; Medical Leave (0.74%) + Long-Term Care (0.58%)</td></tr>
+                    <tr><td>Mandatory Union/Professional Dues</td><td>Required as a condition of employment</td></tr>
+                    <tr><td>Mandatory Pension Plan Payments</td><td>Employer-required retirement contributions</td></tr>
+                    <tr><td>Court-Ordered Maintenance Paid</td><td>Alimony/maintenance paid to another party</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Key Factors in Washington Calculations</h2>
+        <p class="section-subtitle">Washington's WSCSS considers multiple factors and includes important low-income protections</p>
+
+        <div class="factors-list">
+            <div class="factor-item">
+                <h4>Self-Support Reserve (SSR)</h4>
+                <p>Set at 180% of the federal poverty guideline ($2,394/month in 2026). When a parent's net income falls below the SSR, their obligation is limited to the presumptive $50 per child minimum.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Low-Income Combined Net</h4>
+                <p>When combined net income is below $2,200/month, each parent's obligation defaults to the presumptive $50 per child minimum to protect both households' basic needs.</p>
+            </div>
+            <div class="factor-item">
+                <h4>SSR Limitation (Line 8c)</h4>
+                <p>When a parent's net income exceeds the SSR but the available amount (net minus SSR) is less than their basic CSO, the obligation is capped at the available amount or $50 per child, whichever is greater.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Economic Table (up to $50,000)</h4>
+                <p>The 2026 economic table extends to $50,000/month combined net income (up from $12,000), covering the vast majority of cases without requiring extrapolation.</p>
+            </div>
+            <div class="factor-item">
+                <h4>Healthcare &amp; Childcare Add-Ons</h4>
+                <p>Health insurance premiums and work-related childcare costs are added to the BCSO and split proportionally between parents based on their income shares (Part III of the worksheets).</p>
+            </div>
+            <div class="factor-item">
+                <h4>Deviation Factors (RCW 26.19.075)</h4>
+                <p>Courts may deviate from the standard calculation based on factors including preexisting child support obligations, shared residential schedules, and children from other relationships.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Why Washington Attorneys Choose Juno</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>WSCSS-Compliant Calculations</h3>
+                <p>Our calculator implements the exact WSCSS formula per RCW 26.19, using the official January 2026 economic table. Verified across 62 automated tests and 7 manual scenarios including all low-income limitation paths.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Official WSCSS Worksheet Generation</h3>
+                <p>Automatically generates the completed WSCSS Worksheets (CSW/CSWP 01/2026) ready for court filing. All 5 pages populated including Part I income, Part II limitations, Parts III-VI add-ons and credits, and Part VII informational calculations.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Automatic Tax &amp; Deduction Calculations</h3>
+                <p>Built-in calculator automatically computes federal and state income taxes, FICA, PFML, and WA Cares deductions. No manual tax lookups required — just enter gross income.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👨‍👩‍👧</div>
+                <h3>3-Parent Support (RCW 26.26A)</h3>
+                <p>Full support for Washington's three-parent families under the Uniform Parentage Act. Generates the official 6-page 3-parent WSCSS worksheet with all three columns populated.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Complete Low-Income Protections</h3>
+                <p>Correctly applies all WSCSS low-income limitations: combined net below $2,200 (line 8a), individual net below SSR (line 8b), SSR limitation for available income (line 8c), and multiple-children adjustments (line 8d).</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Client-Ready Reports</h3>
+                <p>Generate detailed breakdowns showing every calculation step from gross income through deductions to final obligation. Perfect for client consultations, mediations, and court presentations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--card-white);">
+        <h2 class="section-title">Washington-Specific Features</h2>
+        <p class="section-subtitle">Purpose-built for Washington's unique child support requirements under RCW 26.19</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏛️</div>
+                <h3>Washington Superior Courts</h3>
+                <p>Forms and calculations formatted for Washington Superior Court proceedings across all 39 counties, from King County to Whitman County.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>2026 Economic Table</h3>
+                <p>Full implementation of the expanded January 2026 economic table covering combined net incomes from $0 to $50,000/month for 1 through 12 children, with per-child obligation amounts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧮</div>
+                <h3>Form-Consistent Values</h3>
+                <p>The WSCSS worksheet is internally self-consistent: every line flows mathematically from previous lines, exactly matching how a court clerk would verify the form by hand.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>45% Net Income Cap</h3>
+                <p>Part VII informational calculations include the 45% net income threshold (line 18) and 25% of basic obligation (line 19), giving courts the data needed to evaluate potential deviation requests.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Start Calculating Washington Child Support Today</h2>
+        <p>Join family law attorneys across Washington using Juno for accurate, court-ready child support calculations.</p>
+        <div class="cta-buttons">
+            <a href="https://apps.apple.com/us/app/juno-child-support-calculator/id6754177009" class="btn-primary">Download for iOS</a>
+            <a href="index.html#pricing" class="btn-secondary">View Pricing</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.85;">7-day free trial &bull; $7.99/month &bull; Cancel anytime</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Juno</h3>
+                <p style="color: #ccc;">Professional child support calculators for family law attorneys.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Supported States</h3>
+                <ul>
+                    <li><a href="/washington">Washington</a></li>
+                    <li><a href="/california">California</a></li>
+                    <li><a href="/texas">Texas</a></li>
+                    <li><a href="index.html#states">View All 16 States</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://www.courts.wa.gov/forms/?fa=forms.contribute&formID=20" target="_blank">WA Court Forms</a></li>
+                    <li><a href="https://app.leg.wa.gov/RCW/default.aspx?cite=26.19" target="_blank">RCW 26.19</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="/terms">Terms of Service</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Juno Technology. All rights reserved. This calculator is for informational purposes only and does not constitute legal advice.</p>
+        </div>
+    </footer>
+</body>
+</html>
